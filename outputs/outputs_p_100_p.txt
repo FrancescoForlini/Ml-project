@@ -1,0 +1,3599 @@
+#####################################################################################
+Logistic Regression
+#####################################################################################
+
+Training and test process (Robust scaling) with no feature selection
+Cross validation mean precision on training set:  0.26731252701749597
+Cross validation mean recall on training set:  0.8600000000000001
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 77
+Predicted positives: 23
+True negatives (how many of the predicts are really negative):  70
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  11
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 70, dtype: object
+Players really Hof that predicted not (False Negatives):
+29       Paul George
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+55        Kevon Looney
+94           John Wall
+23      Andre Drummond
+50      DeAndre Jordan
+0         Steven Adams
+30         Rudy Gobert
+22         Luka Dončić
+2        Jarrett Allen
+1          Bam Adebayo
+15        Clint Capela
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.86      0.89        81
+           1       0.52      0.63      0.57        19
+
+    accuracy                           0.82       100
+   macro avg       0.72      0.75      0.73       100
+weighted avg       0.84      0.82      0.83       100
+
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  26
+                Player  model_hof prob  Hof prob
+26      Derrick Favors        0.286649    0.0003
+77        Derrick Rose        0.290334    0.1052
+37    Montrezl Harrell        0.977577    0.0004
+55        Kevon Looney        0.501051    0.0016
+20       DeMar DeRozan        0.122844    0.4635
+29         Paul George        0.136584    0.9786
+94           John Wall        0.563810    0.3239
+23      Andre Drummond        0.745408    0.0166
+18       Stephen Curry        0.546711    1.0000
+50      DeAndre Jordan        0.873389    0.0374
+34      Draymond Green        0.059455    0.7682
+88  Karl-Anthony Towns        0.024405    0.2264
+0         Steven Adams        0.884526    0.0004
+30         Rudy Gobert        0.999921    0.2596
+95   Russell Westbrook        0.768389    0.9993
+22         Luka Dončić        0.880466    0.4120
+13        Jimmy Butler        0.959716    0.7298
+2        Jarrett Allen        0.968102    0.0016
+58          Kevin Love        0.033167    0.7347
+1          Bam Adebayo        0.862858    0.0076
+15        Clint Capela        0.998714    0.0012
+59          Kyle Lowry        0.060004    0.8574
+86       Klay Thompson        0.001833    0.7021
+45        Kyrie Irving        0.122758    0.9345
+25         Joel Embiid        0.949504    0.6622
+54      Damian Lillard        0.375209    0.9871
+
+
+#####################################################################################
+
+Training and test process (Robust scaling) with refcv feature selection
+Optimal number of features: 11
+Selected features:
+['3P%', 'FT', 'FTA', 'FT%', 'ORB', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.27095528133734115
+Cross validation mean recall on training set:  0.8600000000000001
+Feature Columns (list) used for training and test process:
+['3P%', 'FT', 'FTA', 'FT%', 'ORB', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 78
+Predicted positives: 22
+True negatives (how many of the predicts are really negative):  71
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  10
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 71, dtype: object
+Players really Hof that predicted not (False Negatives):
+29       Paul George
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+94           John Wall
+23      Andre Drummond
+50      DeAndre Jordan
+0         Steven Adams
+30         Rudy Gobert
+22         Luka Dončić
+2        Jarrett Allen
+1          Bam Adebayo
+15        Clint Capela
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.88      0.89        81
+           1       0.55      0.63      0.59        19
+
+    accuracy                           0.83       100
+   macro avg       0.73      0.75      0.74       100
+weighted avg       0.84      0.83      0.83       100
+
+Ok let's plot it
+['ORtg', 'DRtg', 'On/OffRtg']
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  28
+                Player  model_hof prob  Hof prob
+26      Derrick Favors        0.257461    0.0003
+77        Derrick Rose        0.283617    0.1052
+37    Montrezl Harrell        0.986225    0.0004
+55        Kevon Looney        0.393375    0.0016
+20       DeMar DeRozan        0.100063    0.4635
+29         Paul George        0.193768    0.9786
+94           John Wall        0.551557    0.3239
+23      Andre Drummond        0.830541    0.0166
+18       Stephen Curry        0.649391    1.0000
+84        Jayson Tatum        0.335118    0.1770
+50      DeAndre Jordan        0.969487    0.0374
+34      Draymond Green        0.051653    0.7682
+99          Trae Young        0.285516    0.0941
+88  Karl-Anthony Towns        0.021983    0.2264
+0         Steven Adams        0.935587    0.0004
+30         Rudy Gobert        0.999985    0.2596
+95   Russell Westbrook        0.790268    0.9993
+22         Luka Dončić        0.964419    0.4120
+13        Jimmy Butler        0.935618    0.7298
+2        Jarrett Allen        0.984955    0.0016
+58          Kevin Love        0.049482    0.7347
+1          Bam Adebayo        0.904860    0.0076
+15        Clint Capela        0.999495    0.0012
+59          Kyle Lowry        0.041859    0.8574
+86       Klay Thompson        0.002642    0.7021
+45        Kyrie Irving        0.115932    0.9345
+25         Joel Embiid        0.958106    0.6622
+54      Damian Lillard        0.461673    0.9871
+
+#####################################################################################
+
+Training and test process (Robust scaling) with skb feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.2327429147611464
+Cross validation mean recall on training set:  0.8752380952380954
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 83
+Predicted positives: 17
+True negatives (how many of the predicts are really negative):  77
+False negatives (predicted negatives that are actual positive):  6
+True positives (how many of the predicts are really positive):  13
+False positives (predicted positives that are actual negative):  4
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 77, dtype: object
+Players really Hof that predicted not (False Negatives):
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+88    Karl-Anthony Towns
+30           Rudy Gobert
+22           Luka Dončić
+91     Jonas Valančiūnas
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      0.95      0.94        81
+           1       0.76      0.68      0.72        19
+
+    accuracy                           0.90       100
+   macro avg       0.85      0.82      0.83       100
+weighted avg       0.90      0.90      0.90       100
+
+Ok let's plot it
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  26
+                Player  model_hof prob  Hof prob
+26      Derrick Favors        0.242614    0.0003
+80    Domantas Sabonis        0.262176    0.0669
+37    Montrezl Harrell        0.382874    0.0004
+55        Kevon Looney        0.222424    0.0016
+20       DeMar DeRozan        0.062899    0.4635
+29         Paul George        0.624439    0.9786
+23      Andre Drummond        0.411789    0.0166
+74  Kristaps Porziņģis        0.186458    0.0004
+84        Jayson Tatum        0.407609    0.1770
+50      DeAndre Jordan        0.203792    0.0374
+34      Draymond Green        0.052772    0.7682
+88  Karl-Anthony Towns        0.732350    0.2264
+30         Rudy Gobert        0.921939    0.2596
+95   Russell Westbrook        0.833890    0.9993
+22         Luka Dončić        0.807182    0.4120
+2        Jarrett Allen        0.479228    0.0016
+58          Kevin Love        0.313705    0.7347
+1          Bam Adebayo        0.462023    0.0076
+15        Clint Capela        0.476774    0.0012
+59          Kyle Lowry        0.121606    0.8574
+86       Klay Thompson        0.013947    0.7021
+64        JaVale McGee        0.211468    0.0011
+45        Kyrie Irving        0.456431    0.9345
+25         Joel Embiid        0.995769    0.6622
+91   Jonas Valančiūnas        0.700488    0.0003
+54      Damian Lillard        0.316359    0.9871
+
+#####################################################################################
+
+Training and test process (Robust scaling) with sfm feature selection
+Optimal number of features: 12
+Selected features:
+['FG%', '3PA', '3P%', 'FT', 'FTA', 'ORB', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.269547204065417
+Cross validation mean recall on training set:  0.8600000000000001
+Feature Columns (list) used for training and test process:
+['FG%', '3PA', '3P%', 'FT', 'FTA', 'ORB', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 78
+Predicted positives: 22
+True negatives (how many of the predicts are really negative):  71
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  10
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 71, dtype: object
+Players really Hof that predicted not (False Negatives):
+29       Paul George
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+94           John Wall
+23      Andre Drummond
+50      DeAndre Jordan
+0         Steven Adams
+30         Rudy Gobert
+22         Luka Dončić
+2        Jarrett Allen
+1          Bam Adebayo
+15        Clint Capela
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.88      0.89        81
+           1       0.55      0.63      0.59        19
+
+    accuracy                           0.83       100
+   macro avg       0.73      0.75      0.74       100
+weighted avg       0.84      0.83      0.83       100
+
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  26
+                Player  model_hof prob  Hof prob
+26      Derrick Favors        0.165587    0.0003
+77        Derrick Rose        0.342971    0.1052
+37    Montrezl Harrell        0.933631    0.0004
+55        Kevon Looney        0.178875    0.0016
+20       DeMar DeRozan        0.139022    0.4635
+29         Paul George        0.211119    0.9786
+94           John Wall        0.558575    0.3239
+23      Andre Drummond        0.516196    0.0166
+18       Stephen Curry        0.639031    1.0000
+50      DeAndre Jordan        0.728623    0.0374
+34      Draymond Green        0.046593    0.7682
+88  Karl-Anthony Towns        0.044857    0.2264
+0         Steven Adams        0.571797    0.0004
+30         Rudy Gobert        0.999818    0.2596
+95   Russell Westbrook        0.789999    0.9993
+22         Luka Dončić        0.880163    0.4120
+13        Jimmy Butler        0.970140    0.7298
+2        Jarrett Allen        0.959640    0.0016
+58          Kevin Love        0.083679    0.7347
+1          Bam Adebayo        0.869978    0.0076
+15        Clint Capela        0.991460    0.0012
+59          Kyle Lowry        0.054741    0.8574
+86       Klay Thompson        0.002506    0.7021
+45        Kyrie Irving        0.158783    0.9345
+25         Joel Embiid        0.966160    0.6622
+54      Damian Lillard        0.404492    0.9871
+
+
+#####################################################################################
+
+Training and test process (Robust scaling) with manual feature selection
+Cross validation mean precision on training set:  0.23984026000806083
+Cross validation mean recall on training set:  0.8752380952380954
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', 'PTS', 'AST', 'TRB', 'STL', 'BLK', 'ORtg', 'DRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 86
+Predicted positives: 14
+True negatives (how many of the predicts are really negative):  78
+False negatives (predicted negatives that are actual positive):  8
+True positives (how many of the predicts are really positive):  11
+False positives (predicted positives that are actual negative):  3
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 78, dtype: object
+Players really Hof that predicted not (False Negatives):
+29          Paul George
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+30         Rudy Gobert
+22         Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.96      0.93        81
+           1       0.79      0.58      0.67        19
+
+    accuracy                           0.89       100
+   macro avg       0.85      0.77      0.80       100
+weighted avg       0.88      0.89      0.88       100
+
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  23
+               Player  model_hof prob  Hof prob
+37   Montrezl Harrell        0.584330    0.0004
+20      DeMar DeRozan        0.024532    0.4635
+29        Paul George        0.238127    0.9786
+94          John Wall        0.076516    0.3239
+23     Andre Drummond        0.169537    0.0166
+18      Stephen Curry        0.801271    1.0000
+50     DeAndre Jordan        0.420361    0.0374
+34     Draymond Green        0.030033    0.7682
+30        Rudy Gobert        0.947679    0.2596
+95  Russell Westbrook        0.263707    0.9993
+22        Luka Dončić        0.747302    0.4120
+2       Jarrett Allen        0.464219    0.0016
+58         Kevin Love        0.067877    0.7347
+1         Bam Adebayo        0.220992    0.0076
+36       James Harden        0.827685    0.9999
+15       Clint Capela        0.412423    0.0012
+59         Kyle Lowry        0.092218    0.8574
+86      Klay Thompson        0.010674    0.7021
+64       JaVale McGee        0.160096    0.0011
+45       Kyrie Irving        0.257640    0.9345
+25        Joel Embiid        0.972992    0.6622
+91  Jonas Valančiūnas        0.259217    0.0003
+54     Damian Lillard        0.209575    0.9871
+
+
+#####################################################################################
+Support Vector Classifier
+#####################################################################################
+
+Training and test process (Robust scaling) with no feature selection
+Cross validation mean precision on training set:  0.2507505905119668
+Cross validation mean recall on training set:  0.8466666666666669
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 78
+Predicted positives: 22
+True negatives (how many of the predicts are really negative):  70
+False negatives (predicted negatives that are actual positive):  8
+True positives (how many of the predicts are really positive):  11
+False positives (predicted positives that are actual negative):  11
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 70, dtype: object
+Players really Hof that predicted not (False Negatives):
+29       Paul George
+18     Stephen Curry
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+55        Kevon Looney
+94           John Wall
+23      Andre Drummond
+50      DeAndre Jordan
+0         Steven Adams
+30         Rudy Gobert
+22         Luka Dončić
+2        Jarrett Allen
+1          Bam Adebayo
+15        Clint Capela
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.90      0.86      0.88        81
+           1       0.50      0.58      0.54        19
+
+    accuracy                           0.81       100
+   macro avg       0.70      0.72      0.71       100
+weighted avg       0.82      0.81      0.82       100
+
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  30
+                   Player  model_hof prob  Hof prob
+37       Montrezl Harrell        0.400072    0.0004
+3   Giannis Antetokounmpo        0.205426    0.9868
+20          DeMar DeRozan        0.020510    0.4635
+72             Chris Paul        0.164483    1.0000
+24           Kevin Durant        0.407541    1.0000
+29            Paul George        0.010359    0.9786
+94              John Wall        0.096753    0.3239
+53          Kawhi Leonard        0.222582    0.9131
+18          Stephen Curry        0.047682    1.0000
+47           LeBron James        0.680218    1.0000
+84           Jayson Tatum        0.017430    0.1770
+50         DeAndre Jordan        0.202421    0.0374
+34         Draymond Green        0.010809    0.7682
+88     Karl-Anthony Towns        0.003123    0.2264
+0            Steven Adams        0.348625    0.0004
+30            Rudy Gobert        0.947847    0.2596
+95      Russell Westbrook        0.085304    0.9993
+22            Luka Dončić        0.078870    0.4120
+13           Jimmy Butler        0.448299    0.7298
+2           Jarrett Allen        0.359983    0.0016
+58             Kevin Love        0.003196    0.7347
+36           James Harden        0.294442    0.9999
+15           Clint Capela        0.823594    0.0012
+59             Kyle Lowry        0.010612    0.8574
+19          Anthony Davis        0.265825    0.9960
+48           Nikola Jokić        0.100493    0.9804
+86          Klay Thompson        0.000909    0.7021
+45           Kyrie Irving        0.013275    0.9345
+25            Joel Embiid        0.225424    0.6622
+54         Damian Lillard        0.042753    0.9871
+
+
+#####################################################################################
+
+Training and test process (Robust scaling) with rfecv feature selection
+Optimal number of features: 15
+Selected features:
+['FGA', 'FG%', '3P', '3PA', '3P%', 'FT', 'FTA', 'FT%', 'TRB', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.27335150645624107
+Cross validation mean recall on training set:  0.8609523809523811
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', '3P', '3PA', '3P%', 'FT', 'FTA', 'FT%', 'TRB', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 77
+Predicted positives: 23
+True negatives (how many of the predicts are really negative):  70
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  11
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 70, dtype: object
+Players really Hof that predicted not (False Negatives):
+29       Paul George
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+55        Kevon Looney
+94           John Wall
+23      Andre Drummond
+50      DeAndre Jordan
+0         Steven Adams
+30         Rudy Gobert
+22         Luka Dončić
+2        Jarrett Allen
+1          Bam Adebayo
+15        Clint Capela
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.86      0.89        81
+           1       0.52      0.63      0.57        19
+
+    accuracy                           0.82       100
+   macro avg       0.72      0.75      0.73       100
+weighted avg       0.84      0.82      0.83       100
+
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  32
+                   Player  model_hof prob  Hof prob
+37       Montrezl Harrell        0.483731    0.0004
+3   Giannis Antetokounmpo        0.237029    0.9868
+20          DeMar DeRozan        0.017328    0.4635
+72             Chris Paul        0.189993    1.0000
+24           Kevin Durant        0.391385    1.0000
+29            Paul George        0.010680    0.9786
+94              John Wall        0.077537    0.3239
+53          Kawhi Leonard        0.303954    0.9131
+23         Andre Drummond        0.247662    0.0166
+18          Stephen Curry        0.056873    1.0000
+47           LeBron James        0.753831    1.0000
+84           Jayson Tatum        0.018194    0.1770
+50         DeAndre Jordan        0.339186    0.0374
+34         Draymond Green        0.008908    0.7682
+88     Karl-Anthony Towns        0.003641    0.2264
+0            Steven Adams        0.582087    0.0004
+30            Rudy Gobert        0.972908    0.2596
+95      Russell Westbrook        0.100850    0.9993
+22            Luka Dončić        0.101588    0.4120
+13           Jimmy Butler        0.547768    0.7298
+2           Jarrett Allen        0.500000    0.0016
+58             Kevin Love        0.005721    0.7347
+1             Bam Adebayo        0.211769    0.0076
+36           James Harden        0.276058    0.9999
+15           Clint Capela        0.932472    0.0012
+59             Kyle Lowry        0.007896    0.8574
+19          Anthony Davis        0.329894    0.9960
+48           Nikola Jokić        0.196100    0.9804
+86          Klay Thompson        0.000635    0.7021
+45           Kyrie Irving        0.011589    0.9345
+25            Joel Embiid        0.267244    0.6622
+54         Damian Lillard        0.034611    0.9871
+
+
+#####################################################################################
+
+Training and test process (Robust scaling) with skb feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.22891481399955974
+Cross validation mean recall on training set:  0.8752380952380954
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 81
+Predicted positives: 19
+True negatives (how many of the predicts are really negative):  76
+False negatives (predicted negatives that are actual positive):  5
+True positives (how many of the predicts are really positive):  14
+False positives (predicted positives that are actual negative):  5
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 76, dtype: object
+Players really Hof that predicted not (False Negatives):
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+88    Karl-Anthony Towns
+30           Rudy Gobert
+22           Luka Dončić
+2          Jarrett Allen
+91     Jonas Valančiūnas
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.94      0.94      0.94        81
+           1       0.74      0.74      0.74        19
+
+    accuracy                           0.90       100
+   macro avg       0.84      0.84      0.84       100
+weighted avg       0.90      0.90      0.90       100
+
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  21
+                   Player  model_hof prob  Hof prob
+3   Giannis Antetokounmpo        0.200177    0.9868
+20          DeMar DeRozan        0.005002    0.4635
+72             Chris Paul        0.351408    1.0000
+24           Kevin Durant        0.400514    1.0000
+29            Paul George        0.062288    0.9786
+94              John Wall        0.020548    0.3239
+53          Kawhi Leonard        0.394317    0.9131
+18          Stephen Curry        0.245982    1.0000
+47           LeBron James        0.415811    1.0000
+34         Draymond Green        0.004542    0.7682
+95      Russell Westbrook        0.145202    0.9993
+22            Luka Dončić        0.125136    0.4120
+13           Jimmy Butler        0.098726    0.7298
+58             Kevin Love        0.023551    0.7347
+36           James Harden        0.288227    0.9999
+59             Kyle Lowry        0.010479    0.8574
+19          Anthony Davis        0.291898    0.9960
+48           Nikola Jokić        0.772035    0.9804
+86          Klay Thompson        0.001618    0.7021
+45           Kyrie Irving        0.049730    0.9345
+54         Damian Lillard        0.031502    0.9871
+
+
+#####################################################################################
+
+Training and test process (Robust scaling) with sfm feature selection
+Optimal number of features: 11
+Selected features:
+['FGA', 'FG%', '3PA', 'FT', 'FTA', 'FT%', 'TOV', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.26868349042262085
+Cross validation mean recall on training set:  0.8885714285714286
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', '3PA', 'FT', 'FTA', 'FT%', 'TOV', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 82
+Predicted positives: 18
+True negatives (how many of the predicts are really negative):  75
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  6
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 75, dtype: object
+Players really Hof that predicted not (False Negatives):
+29       Paul George
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+94        John Wall
+30      Rudy Gobert
+22      Luka Dončić
+2     Jarrett Allen
+1       Bam Adebayo
+15     Clint Capela
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.93      0.92        81
+           1       0.67      0.63      0.65        19
+
+    accuracy                           0.87       100
+   macro avg       0.79      0.78      0.78       100
+weighted avg       0.87      0.87      0.87       100
+
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  22
+                   Player  model_hof prob  Hof prob
+3   Giannis Antetokounmpo        0.176591    0.9868
+20          DeMar DeRozan        0.010172    0.4635
+72             Chris Paul        0.265031    1.0000
+24           Kevin Durant        0.615946    1.0000
+29            Paul George        0.020817    0.9786
+94              John Wall        0.091306    0.3239
+53          Kawhi Leonard        0.531631    0.9131
+18          Stephen Curry        0.072793    1.0000
+47           LeBron James        0.802015    1.0000
+34         Draymond Green        0.013141    0.7682
+88     Karl-Anthony Towns        0.016529    0.2264
+95      Russell Westbrook        0.149940    0.9993
+22            Luka Dončić        0.118615    0.4120
+13           Jimmy Butler        0.538044    0.7298
+58             Kevin Love        0.030422    0.7347
+36           James Harden        0.284478    0.9999
+59             Kyle Lowry        0.008477    0.8574
+19          Anthony Davis        0.425351    0.9960
+48           Nikola Jokić        0.485648    0.9804
+86          Klay Thompson        0.000750    0.7021
+45           Kyrie Irving        0.016594    0.9345
+54         Damian Lillard        0.032843    0.9871
+
+
+#####################################################################################
+
+Training and test process (Robust scaling) with manual feature selection
+Cross validation mean precision on training set:  0.2620365714232054
+Cross validation mean recall on training set:  0.8752380952380954
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', 'PTS', 'AST', 'TRB', 'STL', 'BLK', 'ORtg', 'DRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 86
+Predicted positives: 14
+True negatives (how many of the predicts are really negative):  78
+False negatives (predicted negatives that are actual positive):  8
+True positives (how many of the predicts are really positive):  11
+False positives (predicted positives that are actual negative):  3
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 78, dtype: object
+Players really Hof that predicted not (False Negatives):
+29          Paul George
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+30         Rudy Gobert
+22         Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.96      0.93        81
+           1       0.79      0.58      0.67        19
+
+    accuracy                           0.89       100
+   macro avg       0.85      0.77      0.80       100
+weighted avg       0.88      0.89      0.88       100
+
+probability_hof_comparison Index(['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA',
+       'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS',
+       'ORtg', 'DRtg', 'On/OffRtg', 'MP', 'Player', 'Hof', 'HoF Prob'],
+      dtype='object')
+# players with >0.15 diff. on hof prob. :  24
+                   Player  model_hof prob  Hof prob
+3   Giannis Antetokounmpo        0.235013    0.9868
+20          DeMar DeRozan        0.003340    0.4635
+72             Chris Paul        0.196404    1.0000
+24           Kevin Durant        0.208487    1.0000
+29            Paul George        0.016578    0.9786
+94              John Wall        0.006912    0.3239
+53          Kawhi Leonard        0.231589    0.9131
+18          Stephen Curry        0.122354    1.0000
+47           LeBron James        0.351259    1.0000
+84           Jayson Tatum        0.017717    0.1770
+34         Draymond Green        0.002068    0.7682
+88     Karl-Anthony Towns        0.026567    0.2264
+95      Russell Westbrook        0.014526    0.9993
+22            Luka Dončić        0.080827    0.4120
+13           Jimmy Butler        0.064349    0.7298
+58             Kevin Love        0.003291    0.7347
+36           James Harden        0.135509    0.9999
+59             Kyle Lowry        0.006497    0.8574
+19          Anthony Davis        0.228766    0.9960
+48           Nikola Jokić        0.290034    0.9804
+86          Klay Thompson        0.002016    0.7021
+45           Kyrie Irving        0.023950    0.9345
+25            Joel Embiid        0.439990    0.6622
+54         Damian Lillard        0.019439    0.9871
+
+
+#####################################################################################
+Decision Tree Classifier
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with no feature selection
+Cross validation mean precision on training set:  0.43735294117647056
+Cross validation mean recall on training set:  0.37523809523809526
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  80
+False negatives (predicted negatives that are actual positive):  5
+True positives (how many of the predicts are really positive):  14
+False positives (predicted positives that are actual negative):  1
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 80, dtype: object
+Players really Hof that predicted not (False Negatives):
+24         Kevin Durant
+95    Russell Westbrook
+58           Kevin Love
+86        Klay Thompson
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+34           Draymond Green
+13             Jimmy Butler
+36             James Harden
+59               Kyle Lowry
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.94      0.99      0.96        81
+           1       0.93      0.74      0.82        19
+
+    accuracy                           0.94       100
+   macro avg       0.94      0.86      0.89       100
+weighted avg       0.94      0.94      0.94       100
+
+# players with >0.15 diff. on hof prob. :  15
+                Player  model_hof prob  Hof prob
+37    Montrezl Harrell             1.0    0.0004
+20       DeMar DeRozan             0.0    0.4635
+24        Kevin Durant             0.0    1.0000
+94           John Wall             0.0    0.3239
+84        Jayson Tatum             0.0    0.1770
+34      Draymond Green             1.0    0.7682
+88  Karl-Anthony Towns             0.0    0.2264
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             0.0    0.4120
+13        Jimmy Butler             1.0    0.7298
+58          Kevin Love             0.0    0.7347
+86       Klay Thompson             0.0    0.7021
+25         Joel Embiid             1.0    0.6622
+54      Damian Lillard             0.0    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling) with no feature selection
+Cross validation mean precision on training set:  0.4213273001508296
+Cross validation mean recall on training set:  0.3476190476190476
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 84
+Predicted positives: 16
+True negatives (how many of the predicts are really negative):  75
+False negatives (predicted negatives that are actual positive):  9
+True positives (how many of the predicts are really positive):  10
+False positives (predicted positives that are actual negative):  6
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 75, dtype: object
+Players really Hof that predicted not (False Negatives):
+29       Paul George
+18     Stephen Curry
+58        Kevin Love
+36      James Harden
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+25       Joel Embiid
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+47             LeBron James
+34           Draymond Green
+95        Russell Westbrook
+13             Jimmy Butler
+19            Anthony Davis
+48             Nikola Jokić
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37      Montrezl Harrell
+67      Donovan Mitchell
+74    Kristaps Porziņģis
+84          Jayson Tatum
+88    Karl-Anthony Towns
+56           Brook Lopez
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.89      0.93      0.91        81
+           1       0.62      0.53      0.57        19
+
+    accuracy                           0.85       100
+   macro avg       0.76      0.73      0.74       100
+weighted avg       0.84      0.85      0.84       100
+
+# players with >0.15 diff. on hof prob. :  21
+                Player  model_hof prob  Hof prob
+37    Montrezl Harrell             1.0    0.0004
+20       DeMar DeRozan             0.0    0.4635
+29         Paul George             0.0    0.9786
+67    Donovan Mitchell             1.0    0.1285
+94           John Wall             0.0    0.3239
+18       Stephen Curry             0.0    1.0000
+74  Kristaps Porziņģis             1.0    0.0004
+84        Jayson Tatum             1.0    0.1770
+34      Draymond Green             1.0    0.7682
+88  Karl-Anthony Towns             1.0    0.2264
+30         Rudy Gobert             0.0    0.2596
+22         Luka Dončić             0.0    0.4120
+13        Jimmy Butler             1.0    0.7298
+56         Brook Lopez             1.0    0.0030
+58          Kevin Love             0.0    0.7347
+36        James Harden             0.0    0.9999
+59          Kyle Lowry             0.0    0.8574
+86       Klay Thompson             0.0    0.7021
+45        Kyrie Irving             0.0    0.9345
+25         Joel Embiid             0.0    0.6622
+54      Damian Lillard             0.0    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with rfecv feature selection
+Optimal number of features: 17
+Selected features:
+['FG%', '3P%', '2PA', '2P%', 'FT', 'FTA', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.5181385281385282
+Cross validation mean recall on training set:  0.4742857142857143
+Feature Columns (list) used for training and test process:
+['FG%', '3P%', '2PA', '2P%', 'FT', 'FTA', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 83
+Predicted positives: 17
+True negatives (how many of the predicts are really negative):  79
+False negatives (predicted negatives that are actual positive):  4
+True positives (how many of the predicts are really positive):  15
+False positives (predicted positives that are actual negative):  2
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 79, dtype: object
+Players really Hof that predicted not (False Negatives):
+95    Russell Westbrook
+58           Kevin Love
+86        Klay Thompson
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+34           Draymond Green
+13             Jimmy Butler
+36             James Harden
+59               Kyle Lowry
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37      Montrezl Harrell
+88    Karl-Anthony Towns
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.98      0.96        81
+           1       0.88      0.79      0.83        19
+
+    accuracy                           0.94       100
+   macro avg       0.92      0.88      0.90       100
+weighted avg       0.94      0.94      0.94       100
+
+# players with >0.15 diff. on hof prob. :  14
+                Player  model_hof prob  Hof prob
+37    Montrezl Harrell             1.0    0.0004
+20       DeMar DeRozan             0.0    0.4635
+94           John Wall             0.0    0.3239
+84        Jayson Tatum             0.0    0.1770
+34      Draymond Green             1.0    0.7682
+88  Karl-Anthony Towns             1.0    0.2264
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             0.0    0.4120
+13        Jimmy Butler             1.0    0.7298
+58          Kevin Love             0.0    0.7347
+86       Klay Thompson             0.0    0.7021
+25         Joel Embiid             1.0    0.6622
+54      Damian Lillard             0.0    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling) with rfecv feature selection
+Optimal number of features: 8
+Selected features:
+['3P%', 'FTA', 'TRB', 'TOV', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.5280652680652681
+Cross validation mean recall on training set:  0.45714285714285713
+Feature Columns (list) used for training and test process:
+['3P%', 'FTA', 'TRB', 'TOV', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  74
+False negatives (predicted negatives that are actual positive):  11
+True positives (how many of the predicts are really positive):  8
+False positives (predicted positives that are actual negative):  7
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 74, dtype: object
+Players really Hof that predicted not (False Negatives):
+24         Kevin Durant
+53        Kawhi Leonard
+47         LeBron James
+34       Draymond Green
+95    Russell Westbrook
+13         Jimmy Butler
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+29              Paul George
+18            Stephen Curry
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37      Montrezl Harrell
+67      Donovan Mitchell
+84          Jayson Tatum
+88    Karl-Anthony Towns
+22           Luka Dončić
+92         Fred VanVleet
+39        Gordon Hayward
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.87      0.91      0.89        81
+           1       0.53      0.42      0.47        19
+
+    accuracy                           0.82       100
+   macro avg       0.70      0.67      0.68       100
+weighted avg       0.81      0.82      0.81       100
+
+# players with >0.15 diff. on hof prob. :  22
+                Player  model_hof prob  Hof prob
+37    Montrezl Harrell             1.0    0.0004
+20       DeMar DeRozan             0.0    0.4635
+24        Kevin Durant             0.0    1.0000
+67    Donovan Mitchell             1.0    0.1285
+94           John Wall             0.0    0.3239
+53       Kawhi Leonard             0.0    0.9131
+47        LeBron James             0.0    1.0000
+84        Jayson Tatum             1.0    0.1770
+34      Draymond Green             0.0    0.7682
+88  Karl-Anthony Towns             1.0    0.2264
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             1.0    0.4120
+13        Jimmy Butler             0.0    0.7298
+58          Kevin Love             0.0    0.7347
+92       Fred VanVleet             1.0    0.0075
+59          Kyle Lowry             0.0    0.8574
+86       Klay Thompson             0.0    0.7021
+45        Kyrie Irving             0.0    0.9345
+25         Joel Embiid             1.0    0.6622
+39      Gordon Hayward             1.0    0.0027
+54      Damian Lillard             0.0    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with skb feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.45071154898741106
+Cross validation mean recall on training set:  0.4133333333333333
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  78
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  3
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 78, dtype: object
+Players really Hof that predicted not (False Negatives):
+53        Kawhi Leonard
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+25          Joel Embiid
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+18            Stephen Curry
+47             LeBron James
+34           Draymond Green
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37      Montrezl Harrell
+88    Karl-Anthony Towns
+91     Jonas Valančiūnas
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.96      0.94        81
+           1       0.80      0.63      0.71        19
+
+    accuracy                           0.90       100
+   macro avg       0.86      0.80      0.82       100
+weighted avg       0.90      0.90      0.90       100
+
+# players with >0.15 diff. on hof prob. :  17
+                Player  model_hof prob  Hof prob
+37    Montrezl Harrell             1.0    0.0004
+20       DeMar DeRozan             0.0    0.4635
+94           John Wall             0.0    0.3239
+53       Kawhi Leonard             0.0    0.9131
+84        Jayson Tatum             0.0    0.1770
+34      Draymond Green             1.0    0.7682
+88  Karl-Anthony Towns             1.0    0.2264
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             0.0    0.4120
+13        Jimmy Butler             1.0    0.7298
+58          Kevin Love             0.0    0.7347
+59          Kyle Lowry             0.0    0.8574
+86       Klay Thompson             0.0    0.7021
+25         Joel Embiid             0.0    0.6622
+91   Jonas Valančiūnas             1.0    0.0003
+54      Damian Lillard             0.0    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling) with skb feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.3424117987275882
+Cross validation mean recall on training set:  0.33333333333333337
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  75
+False negatives (predicted negatives that are actual positive):  10
+True positives (how many of the predicts are really positive):  9
+False positives (predicted positives that are actual negative):  6
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 75, dtype: object
+Players really Hof that predicted not (False Negatives):
+72           Chris Paul
+29          Paul George
+34       Draymond Green
+95    Russell Westbrook
+13         Jimmy Butler
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67      Donovan Mitchell
+16           Mike Conley
+84          Jayson Tatum
+88    Karl-Anthony Towns
+22           Luka Dončić
+56           Brook Lopez
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.88      0.93      0.90        81
+           1       0.60      0.47      0.53        19
+
+    accuracy                           0.84       100
+   macro avg       0.74      0.70      0.72       100
+weighted avg       0.83      0.84      0.83       100
+
+# players with >0.15 diff. on hof prob. :  20
+                Player  model_hof prob  Hof prob
+20       DeMar DeRozan             0.0    0.4635
+72          Chris Paul             0.0    1.0000
+29         Paul George             0.0    0.9786
+67    Donovan Mitchell             1.0    0.1285
+94           John Wall             0.0    0.3239
+16         Mike Conley             1.0    0.0080
+84        Jayson Tatum             1.0    0.1770
+34      Draymond Green             0.0    0.7682
+88  Karl-Anthony Towns             1.0    0.2264
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             1.0    0.4120
+13        Jimmy Butler             0.0    0.7298
+56         Brook Lopez             1.0    0.0030
+58          Kevin Love             0.0    0.7347
+59          Kyle Lowry             0.0    0.8574
+86       Klay Thompson             0.0    0.7021
+45        Kyrie Irving             0.0    0.9345
+25         Joel Embiid             1.0    0.6622
+54      Damian Lillard             0.0    0.9871
+
+
+#####################################################################################
+
+Training and test process (no feature selection) with sfm feature selection
+Optimal number of features: 11
+Selected features:
+['FG%', '3P%', '2PA', 'DRB', 'AST', 'STL', 'BLK', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.47224471434997745
+Cross validation mean recall on training set:  0.4161904761904762
+Feature Columns (list) used for training and test process:
+['FG%', '3P%', '2PA', 'DRB', 'AST', 'STL', 'BLK', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 84
+Predicted positives: 16
+True negatives (how many of the predicts are really negative):  76
+False negatives (predicted negatives that are actual positive):  8
+True positives (how many of the predicts are really positive):  11
+False positives (predicted positives that are actual negative):  5
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 76, dtype: object
+Players really Hof that predicted not (False Negatives):
+24         Kevin Durant
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+85       Isaiah Thomas
+16         Mike Conley
+92       Fred VanVleet
+12       Jalen Brunson
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.90      0.94      0.92        81
+           1       0.69      0.58      0.63        19
+
+    accuracy                           0.87       100
+   macro avg       0.80      0.76      0.77       100
+weighted avg       0.86      0.87      0.87       100
+
+# players with >0.15 diff. on hof prob. :  21
+                Player  model_hof prob  Hof prob
+37    Montrezl Harrell             1.0    0.0004
+20       DeMar DeRozan             0.0    0.4635
+24        Kevin Durant             0.0    1.0000
+94           John Wall             0.0    0.3239
+85       Isaiah Thomas             1.0    0.0705
+16         Mike Conley             1.0    0.0080
+84        Jayson Tatum             0.0    0.1770
+34      Draymond Green             0.0    0.7682
+88  Karl-Anthony Towns             0.0    0.2264
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             0.0    0.4120
+13        Jimmy Butler             1.0    0.7298
+58          Kevin Love             0.0    0.7347
+92       Fred VanVleet             1.0    0.0075
+59          Kyle Lowry             0.0    0.8574
+86       Klay Thompson             0.0    0.7021
+12       Jalen Brunson             1.0    0.0077
+45        Kyrie Irving             0.0    0.9345
+25         Joel Embiid             1.0    0.6622
+54      Damian Lillard             0.0    0.9871
+
+
+#####################################################################################
+
+Training and test process (no feature selection and weighted classes) with sfm feature selection
+Optimal number of features: 4
+Selected features:
+['TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.3862271062271062
+Cross validation mean recall on training set:  0.40095238095238095
+Feature Columns (list) used for training and test process:
+['TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 83
+Predicted positives: 17
+True negatives (how many of the predicts are really negative):  76
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  5
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 76, dtype: object
+Players really Hof that predicted not (False Negatives):
+72           Chris Paul
+95    Russell Westbrook
+13         Jimmy Butler
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+34           Draymond Green
+58               Kevin Love
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+23        Andre Drummond
+84          Jayson Tatum
+88    Karl-Anthony Towns
+22           Luka Dončić
+65       Khris Middleton
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.94      0.93        81
+           1       0.71      0.63      0.67        19
+
+    accuracy                           0.88       100
+   macro avg       0.81      0.78      0.80       100
+weighted avg       0.88      0.88      0.88       100
+
+# players with >0.15 diff. on hof prob. :  18
+                Player  model_hof prob  Hof prob
+20       DeMar DeRozan             0.0    0.4635
+72          Chris Paul             0.0    1.0000
+94           John Wall             0.0    0.3239
+23      Andre Drummond             1.0    0.0166
+84        Jayson Tatum             1.0    0.1770
+34      Draymond Green             1.0    0.7682
+88  Karl-Anthony Towns             1.0    0.2264
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             1.0    0.4120
+13        Jimmy Butler             0.0    0.7298
+58          Kevin Love             1.0    0.7347
+65     Khris Middleton             1.0    0.0173
+59          Kyle Lowry             0.0    0.8574
+86       Klay Thompson             0.0    0.7021
+45        Kyrie Irving             0.0    0.9345
+25         Joel Embiid             1.0    0.6622
+54      Damian Lillard             0.0    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with manual feature selection
+Cross validation mean precision on training set:  0.4386868686868687
+Cross validation mean recall on training set:  0.44571428571428573
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', 'PTS', 'AST', 'TRB', 'STL', 'BLK', 'ORtg', 'DRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 81
+Predicted positives: 19
+True negatives (how many of the predicts are really negative):  74
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  7
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 74, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+48         Nikola Jokić
+86        Klay Thompson
+25          Joel Embiid
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+45             Kyrie Irving
+54           Damian Lillard
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67    Donovan Mitchell
+23      Andre Drummond
+7         Devin Booker
+99          Trae Young
+79    D'Angelo Russell
+22         Luka Dončić
+93      Nikola Vučević
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.91      0.91        81
+           1       0.63      0.63      0.63        19
+
+    accuracy                           0.86       100
+   macro avg       0.77      0.77      0.77       100
+weighted avg       0.86      0.86      0.86       100
+
+# players with >0.15 diff. on hof prob. :  20
+                Player  model_hof prob  Hof prob
+20       DeMar DeRozan             0.0    0.4635
+67    Donovan Mitchell             1.0    0.1285
+94           John Wall             0.0    0.3239
+23      Andre Drummond             1.0    0.0166
+7         Devin Booker             1.0    0.0489
+84        Jayson Tatum             0.0    0.1770
+34      Draymond Green             0.0    0.7682
+99          Trae Young             1.0    0.0941
+88  Karl-Anthony Towns             0.0    0.2264
+79    D'Angelo Russell             1.0    0.0005
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             1.0    0.4120
+13        Jimmy Butler             1.0    0.7298
+93      Nikola Vučević             1.0    0.0092
+58          Kevin Love             0.0    0.7347
+59          Kyle Lowry             0.0    0.8574
+48        Nikola Jokić             0.0    0.9804
+86       Klay Thompson             0.0    0.7021
+25         Joel Embiid             0.0    0.6622
+
+
+#####################################################################################
+
+Training and test process (no scaling) with manual feature selection
+Cross validation mean precision on training set:  0.388921568627451
+Cross validation mean recall on training set:  0.40285714285714286
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', 'PTS', 'AST', 'TRB', 'STL', 'BLK', 'ORtg', 'DRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 81
+Predicted positives: 19
+True negatives (how many of the predicts are really negative):  74
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  7
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 74, dtype: object
+Players really Hof that predicted not (False Negatives):
+29          Paul George
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37    Montrezl Harrell
+67    Donovan Mitchell
+94           John Wall
+23      Andre Drummond
+79    D'Angelo Russell
+22         Luka Dončić
+93      Nikola Vučević
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.91      0.91        81
+           1       0.63      0.63      0.63        19
+
+    accuracy                           0.86       100
+   macro avg       0.77      0.77      0.77       100
+weighted avg       0.86      0.86      0.86       100
+
+# players with >0.15 diff. on hof prob. :  20
+                Player  model_hof prob  Hof prob
+37    Montrezl Harrell             1.0    0.0004
+20       DeMar DeRozan             0.0    0.4635
+29         Paul George             0.0    0.9786
+67    Donovan Mitchell             1.0    0.1285
+94           John Wall             1.0    0.3239
+23      Andre Drummond             1.0    0.0166
+84        Jayson Tatum             0.0    0.1770
+34      Draymond Green             0.0    0.7682
+88  Karl-Anthony Towns             0.0    0.2264
+79    D'Angelo Russell             1.0    0.0005
+30         Rudy Gobert             0.0    0.2596
+95   Russell Westbrook             0.0    0.9993
+22         Luka Dončić             1.0    0.4120
+13        Jimmy Butler             1.0    0.7298
+93      Nikola Vučević             1.0    0.0092
+58          Kevin Love             0.0    0.7347
+59          Kyle Lowry             0.0    0.8574
+86       Klay Thompson             0.0    0.7021
+25         Joel Embiid             1.0    0.6622
+54      Damian Lillard             0.0    0.9871
+
+
+
+#####################################################################################
+Random Forest Classifier
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with no feature selection
+Cross validation mean precision on training set:  0.7833333333333333
+Cross validation mean recall on training set:  0.31714285714285717
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 90
+Predicted positives: 10
+True negatives (how many of the predicts are really negative):  81
+False negatives (predicted negatives that are actual positive):  9
+True positives (how many of the predicts are really positive):  10
+False positives (predicted positives that are actual negative):  0
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 81, dtype: object
+Players really Hof that predicted not (False Negatives):
+29          Paul George
+34       Draymond Green
+95    Russell Westbrook
+13         Jimmy Butler
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+Series([], Name: Player, dtype: object)
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95        81
+           1       1.00      0.53      0.69        19
+
+    accuracy                           0.91       100
+   macro avg       0.95      0.76      0.82       100
+weighted avg       0.92      0.91      0.90       100
+
+# players with >0.15 diff. on hof prob. :  35
+                   Player  model_hof prob  Hof prob
+80       Domantas Sabonis            0.25    0.0669
+37       Montrezl Harrell            0.32    0.0004
+3   Giannis Antetokounmpo            0.66    0.9868
+20          DeMar DeRozan            0.19    0.4635
+72             Chris Paul            0.70    1.0000
+24           Kevin Durant            0.63    1.0000
+29            Paul George            0.50    0.9786
+67       Donovan Mitchell            0.32    0.1285
+28           De'Aaron Fox            0.18    0.0017
+53          Kawhi Leonard            0.67    0.9131
+81          Pascal Siakam            0.27    0.0077
+23         Andre Drummond            0.27    0.0166
+18          Stephen Curry            0.52    1.0000
+47           LeBron James            0.75    1.0000
+74     Kristaps Porziņģis            0.32    0.0004
+84           Jayson Tatum            0.44    0.1770
+50         DeAndre Jordan            0.27    0.0374
+34         Draymond Green            0.12    0.7682
+99             Trae Young            0.30    0.0941
+88     Karl-Anthony Towns            0.50    0.2264
+95      Russell Westbrook            0.41    0.9993
+13           Jimmy Butler            0.48    0.7298
+93         Nikola Vučević            0.19    0.0092
+58             Kevin Love            0.34    0.7347
+1             Bam Adebayo            0.24    0.0076
+36           James Harden            0.52    0.9999
+59             Kyle Lowry            0.02    0.8574
+19          Anthony Davis            0.83    0.9960
+48           Nikola Jokić            0.55    0.9804
+86          Klay Thompson            0.09    0.7021
+12          Jalen Brunson            0.31    0.0077
+45           Kyrie Irving            0.48    0.9345
+91      Jonas Valančiūnas            0.18    0.0003
+76          Julius Randle            0.20    0.0102
+54         Damian Lillard            0.24    0.9871
+
+
+#####################################################################################
+
+
+Training and test process (no scaling and no weighted classes) with rfecv feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', 'FT', 'FTA', 'DRB', 'AST', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.7050000000000001
+Cross validation mean recall on training set:  0.3885714285714286
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', 'FT', 'FTA', 'DRB', 'AST', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  78
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  3
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 78, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+37      Montrezl Harrell
+88    Karl-Anthony Towns
+22           Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.96      0.94        81
+           1       0.80      0.63      0.71        19
+
+    accuracy                           0.90       100
+   macro avg       0.86      0.80      0.82       100
+weighted avg       0.90      0.90      0.90       100
+
+# players with >0.15 diff. on hof prob. :  31
+                   Player  model_hof prob  Hof prob
+80       Domantas Sabonis            0.34    0.0669
+37       Montrezl Harrell            0.54    0.0004
+3   Giannis Antetokounmpo            0.82    0.9868
+20          DeMar DeRozan            0.12    0.4635
+72             Chris Paul            0.82    1.0000
+24           Kevin Durant            0.78    1.0000
+29            Paul George            0.63    0.9786
+67       Donovan Mitchell            0.45    0.1285
+53          Kawhi Leonard            0.72    0.9131
+81          Pascal Siakam            0.39    0.0077
+23         Andre Drummond            0.25    0.0166
+18          Stephen Curry            0.59    1.0000
+47           LeBron James            0.80    1.0000
+74     Kristaps Porziņģis            0.27    0.0004
+84           Jayson Tatum            0.35    0.1770
+50         DeAndre Jordan            0.32    0.0374
+34         Draymond Green            0.08    0.7682
+99             Trae Young            0.35    0.0941
+88     Karl-Anthony Towns            0.57    0.2264
+95      Russell Westbrook            0.36    0.9993
+93         Nikola Vučević            0.17    0.0092
+58             Kevin Love            0.40    0.7347
+1             Bam Adebayo            0.40    0.0076
+36           James Harden            0.55    0.9999
+59             Kyle Lowry            0.05    0.8574
+48           Nikola Jokić            0.63    0.9804
+86          Klay Thompson            0.06    0.7021
+12          Jalen Brunson            0.37    0.0077
+45           Kyrie Irving            0.48    0.9345
+91      Jonas Valančiūnas            0.21    0.0003
+54         Damian Lillard            0.24    0.9871
+
+
+#####################################################################################
+
+
+Training and test process (no scaling and no weighted classes) with skb feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.7124242424242424
+Cross validation mean recall on training set:  0.3028571428571428
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 86
+Predicted positives: 14
+True negatives (how many of the predicts are really negative):  80
+False negatives (predicted negatives that are actual positive):  6
+True positives (how many of the predicts are really positive):  13
+False positives (predicted positives that are actual negative):  1
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 80, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+58               Kevin Love
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+88    Karl-Anthony Towns
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      0.99      0.96        81
+           1       0.93      0.68      0.79        19
+
+    accuracy                           0.93       100
+   macro avg       0.93      0.84      0.87       100
+weighted avg       0.93      0.93      0.93       100
+
+# players with >0.15 diff. on hof prob. :  30
+                   Player  model_hof prob  Hof prob
+37       Montrezl Harrell            0.46    0.0004
+3   Giannis Antetokounmpo            0.82    0.9868
+20          DeMar DeRozan            0.11    0.4635
+72             Chris Paul            0.53    1.0000
+24           Kevin Durant            0.73    1.0000
+29            Paul George            0.55    0.9786
+67       Donovan Mitchell            0.32    0.1285
+94              John Wall            0.11    0.3239
+53          Kawhi Leonard            0.63    0.9131
+81          Pascal Siakam            0.32    0.0077
+23         Andre Drummond            0.27    0.0166
+18          Stephen Curry            0.56    1.0000
+47           LeBron James            0.71    1.0000
+74     Kristaps Porziņģis            0.30    0.0004
+34         Draymond Green            0.12    0.7682
+99             Trae Young            0.36    0.0941
+88     Karl-Anthony Towns            0.53    0.2264
+95      Russell Westbrook            0.26    0.9993
+56            Brook Lopez            0.22    0.0030
+58             Kevin Love            0.53    0.7347
+36           James Harden            0.56    0.9999
+59             Kyle Lowry            0.12    0.8574
+19          Anthony Davis            0.82    0.9960
+48           Nikola Jokić            0.63    0.9804
+86          Klay Thompson            0.03    0.7021
+12          Jalen Brunson            0.23    0.0077
+45           Kyrie Irving            0.45    0.9345
+91      Jonas Valančiūnas            0.23    0.0003
+76          Julius Randle            0.22    0.0102
+54         Damian Lillard            0.35    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with sfm feature selection
+Optimal number of features: 8
+Selected features:
+['FG', '2P', 'FT', 'DRB', 'AST', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.6961904761904762
+Cross validation mean recall on training set:  0.3180952380952381
+Feature Columns (list) used for training and test process:
+['FG', '2P', 'FT', 'DRB', 'AST', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  79
+False negatives (predicted negatives that are actual positive):  6
+True positives (how many of the predicts are really positive):  13
+False positives (predicted positives that are actual negative):  2
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 79, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+88    Karl-Anthony Towns
+22           Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      0.98      0.95        81
+           1       0.87      0.68      0.76        19
+
+    accuracy                           0.92       100
+   macro avg       0.90      0.83      0.86       100
+weighted avg       0.92      0.92      0.92       100
+
+# players with >0.15 diff. on hof prob. :  33
+                Player  model_hof prob  Hof prob
+80    Domantas Sabonis            0.30    0.0669
+37    Montrezl Harrell            0.47    0.0004
+20       DeMar DeRozan            0.15    0.4635
+72          Chris Paul            0.67    1.0000
+24        Kevin Durant            0.70    1.0000
+29         Paul George            0.62    0.9786
+67    Donovan Mitchell            0.34    0.1285
+11        Jaylen Brown            0.16    0.0032
+81       Pascal Siakam            0.43    0.0077
+23      Andre Drummond            0.31    0.0166
+7         Devin Booker            0.27    0.0489
+18       Stephen Curry            0.59    1.0000
+47        LeBron James            0.77    1.0000
+74  Kristaps Porziņģis            0.27    0.0004
+84        Jayson Tatum            0.40    0.1770
+50      DeAndre Jordan            0.34    0.0374
+34      Draymond Green            0.05    0.7682
+99          Trae Young            0.38    0.0941
+88  Karl-Anthony Towns            0.68    0.2264
+95   Russell Westbrook            0.33    0.9993
+93      Nikola Vučević            0.18    0.0092
+58          Kevin Love            0.32    0.7347
+1          Bam Adebayo            0.41    0.0076
+36        James Harden            0.58    0.9999
+59          Kyle Lowry            0.06    0.8574
+48        Nikola Jokić            0.67    0.9804
+86       Klay Thompson            0.05    0.7021
+64        JaVale McGee            0.20    0.0011
+12       Jalen Brunson            0.35    0.0077
+45        Kyrie Irving            0.52    0.9345
+91   Jonas Valančiūnas            0.21    0.0003
+76       Julius Randle            0.28    0.0102
+54      Damian Lillard            0.37    0.9871
+
+
+#####################################################################################
+
+Training and test process with manual feature selection
+Cross validation mean precision on training set:  0.8123376623376624
+Cross validation mean recall on training set:  0.36190476190476184
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', 'PTS', 'AST', 'TRB', 'STL', 'BLK', 'ORtg', 'DRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  78
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  3
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 78, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67      Donovan Mitchell
+88    Karl-Anthony Towns
+22           Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.96      0.94        81
+           1       0.80      0.63      0.71        19
+
+    accuracy                           0.90       100
+   macro avg       0.86      0.80      0.82       100
+weighted avg       0.90      0.90      0.90       100
+
+# players with >0.15 diff. on hof prob. :  33
+                   Player  model_hof prob  Hof prob
+37       Montrezl Harrell            0.29    0.0004
+3   Giannis Antetokounmpo            0.74    0.9868
+20          DeMar DeRozan            0.07    0.4635
+72             Chris Paul            0.78    1.0000
+24           Kevin Durant            0.67    1.0000
+29            Paul George            0.66    0.9786
+67       Donovan Mitchell            0.57    0.1285
+28           De'Aaron Fox            0.23    0.0017
+81          Pascal Siakam            0.27    0.0077
+23         Andre Drummond            0.23    0.0166
+7            Devin Booker            0.30    0.0489
+18          Stephen Curry            0.57    1.0000
+74     Kristaps Porziņģis            0.32    0.0004
+84           Jayson Tatum            0.43    0.1770
+34         Draymond Green            0.10    0.7682
+99             Trae Young            0.37    0.0941
+88     Karl-Anthony Towns            0.58    0.2264
+30            Rudy Gobert            0.07    0.2596
+95      Russell Westbrook            0.45    0.9993
+56            Brook Lopez            0.23    0.0030
+93         Nikola Vučević            0.33    0.0092
+58             Kevin Love            0.22    0.7347
+1             Bam Adebayo            0.21    0.0076
+65        Khris Middleton            0.22    0.0173
+36           James Harden            0.55    0.9999
+59             Kyle Lowry            0.01    0.8574
+19          Anthony Davis            0.79    0.9960
+48           Nikola Jokić            0.62    0.9804
+86          Klay Thompson            0.04    0.7021
+69        Dejounte Murray            0.27    0.0017
+12          Jalen Brunson            0.20    0.0077
+45           Kyrie Irving            0.44    0.9345
+54         Damian Lillard            0.28    0.9871
+
+
+#####################################################################################
+Adaboost Classifier
+#####################################################################################
+
+Training and test process (no scaling) with no feature selection
+Cross validation mean precision on training set:  0.6733333333333333
+Cross validation mean recall on training set:  0.4438095238095238
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 81
+Predicted positives: 19
+True negatives (how many of the predicts are really negative):  77
+False negatives (predicted negatives that are actual positive):  4
+True positives (how many of the predicts are really positive):  15
+False positives (predicted positives that are actual negative):  4
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 77, dtype: object
+Players really Hof that predicted not (False Negatives):
+34    Draymond Green
+59        Kyle Lowry
+86     Klay Thompson
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+58               Kevin Love
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+84          Jayson Tatum
+88    Karl-Anthony Towns
+22           Luka Dončić
+1            Bam Adebayo
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.95      0.95        81
+           1       0.79      0.79      0.79        19
+
+    accuracy                           0.92       100
+   macro avg       0.87      0.87      0.87       100
+weighted avg       0.92      0.92      0.92       100
+
+# players with >0.15 diff. on hof prob. :  96
+              Player  model_hof prob  Hof prob
+26    Derrick Favors        0.381064    0.0003
+80  Domantas Sabonis        0.458789    0.0669
+82      Marcus Smart        0.307551    0.0002
+68   Markieff Morris        0.274425    0.0003
+77      Derrick Rose        0.436329    0.1052
+..               ...             ...       ...
+31      Aaron Gordon        0.302337    0.0004
+54    Damian Lillard        0.485441    0.9871
+73   Otto Porter Jr.        0.386762    0.0010
+40       Buddy Hield        0.266066    0.0002
+83         Ish Smith        0.257871    0.0004
+
+
+#####################################################################################
+
+Training and test process (no scaling) with rfecv feature selection
+Optimal number of features: 4
+Selected features:
+['PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.5484415584415585
+Cross validation mean recall on training set:  0.3857142857142858
+Feature Columns (list) used for training and test process:
+['PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 90
+Predicted positives: 10
+True negatives (how many of the predicts are really negative):  81
+False negatives (predicted negatives that are actual positive):  9
+True positives (how many of the predicts are really positive):  10
+False positives (predicted positives that are actual negative):  0
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 81, dtype: object
+Players really Hof that predicted not (False Negatives):
+72           Chris Paul
+18        Stephen Curry
+34       Draymond Green
+95    Russell Westbrook
+36         James Harden
+59           Kyle Lowry
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+47             LeBron James
+13             Jimmy Butler
+58               Kevin Love
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+Series([], Name: Player, dtype: object)
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95        81
+           1       1.00      0.53      0.69        19
+
+    accuracy                           0.91       100
+   macro avg       0.95      0.76      0.82       100
+weighted avg       0.92      0.91      0.90       100
+
+# players with >0.15 diff. on hof prob. :  95
+              Player  model_hof prob  Hof prob
+26    Derrick Favors        0.408259    0.0003
+80  Domantas Sabonis        0.447932    0.0669
+82      Marcus Smart        0.268065    0.0002
+68   Markieff Morris        0.234212    0.0003
+77      Derrick Rose        0.367821    0.1052
+..               ...             ...       ...
+31      Aaron Gordon        0.279597    0.0004
+54    Damian Lillard        0.424433    0.9871
+73   Otto Porter Jr.        0.378668    0.0010
+40       Buddy Hield        0.205002    0.0002
+83         Ish Smith        0.183882    0.0004
+
+
+#####################################################################################
+
+Training and test process (no scaling) with skb feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.5795995670995671
+Cross validation mean recall on training set:  0.35809523809523813
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 84
+Predicted positives: 16
+True negatives (how many of the predicts are really negative):  78
+False negatives (predicted negatives that are actual positive):  6
+True positives (how many of the predicts are really positive):  13
+False positives (predicted positives that are actual negative):  3
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 78, dtype: object
+Players really Hof that predicted not (False Negatives):
+53        Kawhi Leonard
+34       Draymond Green
+95    Russell Westbrook
+59           Kyle Lowry
+86        Klay Thompson
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+58               Kevin Love
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+88    Karl-Anthony Towns
+22           Luka Dončić
+91     Jonas Valančiūnas
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      0.96      0.95        81
+           1       0.81      0.68      0.74        19
+
+    accuracy                           0.91       100
+   macro avg       0.87      0.82      0.84       100
+weighted avg       0.91      0.91      0.91       100
+
+# players with >0.15 diff. on hof prob. :  95
+              Player  model_hof prob  Hof prob
+26    Derrick Favors        0.373576    0.0003
+80  Domantas Sabonis        0.494100    0.0669
+82      Marcus Smart        0.293724    0.0002
+68   Markieff Morris        0.282500    0.0003
+77      Derrick Rose        0.417679    0.1052
+..               ...             ...       ...
+31      Aaron Gordon        0.286879    0.0004
+54    Damian Lillard        0.472807    0.9871
+73   Otto Porter Jr.        0.359667    0.0010
+40       Buddy Hield        0.238843    0.0002
+83         Ish Smith        0.250575    0.0004
+
+
+#####################################################################################
+
+Training and test process (no scaling) with rfecv feature selection
+Optimal number of features: 6
+Selected features:
+['DRB', 'AST', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.6438661338661339
+Cross validation mean recall on training set:  0.42952380952380953
+Feature Columns (list) used for training and test process:
+['DRB', 'AST', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 80
+Predicted positives: 20
+True negatives (how many of the predicts are really negative):  76
+False negatives (predicted negatives that are actual positive):  4
+True positives (how many of the predicts are really positive):  15
+False positives (predicted positives that are actual negative):  5
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 76, dtype: object
+Players really Hof that predicted not (False Negatives):
+34    Draymond Green
+59        Kyle Lowry
+86     Klay Thompson
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+58               Kevin Love
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+81         Pascal Siakam
+84          Jayson Tatum
+88    Karl-Anthony Towns
+22           Luka Dončić
+1            Bam Adebayo
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.94      0.94        81
+           1       0.75      0.79      0.77        19
+
+    accuracy                           0.91       100
+   macro avg       0.85      0.86      0.86       100
+weighted avg       0.91      0.91      0.91       100
+
+# players with >0.15 diff. on hof prob. :  95
+              Player  model_hof prob  Hof prob
+26    Derrick Favors        0.391482    0.0003
+80  Domantas Sabonis        0.493670    0.0669
+82      Marcus Smart        0.329437    0.0002
+68   Markieff Morris        0.250433    0.0003
+77      Derrick Rose        0.415850    0.1052
+..               ...             ...       ...
+31      Aaron Gordon        0.329437    0.0004
+54    Damian Lillard        0.461149    0.9871
+73   Otto Porter Jr.        0.366721    0.0010
+40       Buddy Hield        0.225559    0.0002
+83         Ish Smith        0.246287    0.0004
+
+
+#####################################################################################
+
+Training and test process (no scaling) with manual feature selection
+Cross validation mean precision on training set:  0.6301587301587303
+Cross validation mean recall on training set:  0.4161904761904762
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', 'PTS', 'AST', 'TRB', 'STL', 'BLK', 'ORtg', 'DRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  79
+False negatives (predicted negatives that are actual positive):  6
+True positives (how many of the predicts are really positive):  13
+False positives (predicted positives that are actual negative):  2
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 79, dtype: object
+Players really Hof that predicted not (False Negatives):
+29       Paul George
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+88    Karl-Anthony Towns
+22           Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      0.98      0.95        81
+           1       0.87      0.68      0.76        19
+
+    accuracy                           0.92       100
+   macro avg       0.90      0.83      0.86       100
+weighted avg       0.92      0.92      0.92       100
+
+# players with >0.15 diff. on hof prob. :  96
+              Player  model_hof prob  Hof prob
+26    Derrick Favors        0.411939    0.0003
+80  Domantas Sabonis        0.464776    0.0669
+82      Marcus Smart        0.306991    0.0002
+68   Markieff Morris        0.251574    0.0003
+77      Derrick Rose        0.485129    0.1052
+..               ...             ...       ...
+31      Aaron Gordon        0.372489    0.0004
+54    Damian Lillard        0.437703    0.9871
+73   Otto Porter Jr.        0.353556    0.0010
+40       Buddy Hield        0.309025    0.0002
+83         Ish Smith        0.287396    0.0004
+
+
+#####################################################################################
+Gradient Boost
+#####################################################################################
+
+Training and test process (no scaling) with no feature selection
+Cross validation mean precision on training set:  0.762063492063492
+Cross validation mean recall on training set:  0.4428571428571429
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 86
+Predicted positives: 14
+True negatives (how many of the predicts are really negative):  77
+False negatives (predicted negatives that are actual positive):  9
+True positives (how many of the predicts are really positive):  10
+False positives (predicted positives that are actual negative):  4
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 77, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+36         James Harden
+59           Kyle Lowry
+48         Nikola Jokić
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+19            Anthony Davis
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67      Donovan Mitchell
+84          Jayson Tatum
+88    Karl-Anthony Towns
+22           Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.90      0.95      0.92        81
+           1       0.71      0.53      0.61        19
+
+    accuracy                           0.87       100
+   macro avg       0.80      0.74      0.76       100
+weighted avg       0.86      0.87      0.86       100
+
+# players with >0.15 diff. on hof prob. :  21
+                Player  model_hof prob  Hof prob
+20       DeMar DeRozan        0.053546    0.4635
+67    Donovan Mitchell        0.523168    0.1285
+94           John Wall        0.039237    0.3239
+23      Andre Drummond        0.283302    0.0166
+18       Stephen Curry        0.849276    1.0000
+74  Kristaps Porziņģis        0.173229    0.0004
+84        Jayson Tatum        0.648885    0.1770
+34      Draymond Green        0.128448    0.7682
+88  Karl-Anthony Towns        0.636108    0.2264
+30         Rudy Gobert        0.080658    0.2596
+95   Russell Westbrook        0.480901    0.9993
+22         Luka Dončić        0.779738    0.4120
+58          Kevin Love        0.209775    0.7347
+1          Bam Adebayo        0.188476    0.0076
+36        James Harden        0.458329    0.9999
+59          Kyle Lowry        0.045584    0.8574
+48        Nikola Jokić        0.435850    0.9804
+86       Klay Thompson        0.019708    0.7021
+45        Kyrie Irving        0.327969    0.9345
+25         Joel Embiid        0.980592    0.6622
+54      Damian Lillard        0.293707    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling) with rfecv feature selection
+Optimal number of features: 15
+Selected features:
+['FG', 'FGA', '2P', '2PA', '2P%', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.7271794871794872
+Cross validation mean recall on training set:  0.4571428571428572
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', '2P%', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 89
+Predicted positives: 11
+True negatives (how many of the predicts are really negative):  81
+False negatives (predicted negatives that are actual positive):  8
+True positives (how many of the predicts are really positive):  11
+False positives (predicted positives that are actual negative):  0
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 81, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+59           Kyle Lowry
+48         Nikola Jokić
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+Series([], Name: Player, dtype: object)
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      1.00      0.95        81
+           1       1.00      0.58      0.73        19
+
+    accuracy                           0.92       100
+   macro avg       0.96      0.79      0.84       100
+weighted avg       0.93      0.92      0.91       100
+
+# players with >0.15 diff. on hof prob. :  19
+               Player  model_hof prob  Hof prob
+20      DeMar DeRozan        0.049648    0.4635
+24       Kevin Durant        0.841660    1.0000
+67   Donovan Mitchell        0.385559    0.1285
+94          John Wall        0.015353    0.3239
+23     Andre Drummond        0.393245    0.0166
+18      Stephen Curry        0.663652    1.0000
+34     Draymond Green        0.067931    0.7682
+30        Rudy Gobert        0.107906    0.2596
+95  Russell Westbrook        0.284624    0.9993
+58         Kevin Love        0.382002    0.7347
+1         Bam Adebayo        0.265697    0.0076
+36       James Harden        0.649102    0.9999
+59         Kyle Lowry        0.037012    0.8574
+48       Nikola Jokić        0.465396    0.9804
+86      Klay Thompson        0.010640    0.7021
+45       Kyrie Irving        0.246466    0.9345
+25        Joel Embiid        0.933726    0.6622
+91  Jonas Valančiūnas        0.170770    0.0003
+54     Damian Lillard        0.096055    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling) with skb feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.6698412698412699
+Cross validation mean recall on training set:  0.3866666666666667
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 85
+Predicted positives: 15
+True negatives (how many of the predicts are really negative):  78
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  3
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 78, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+13         Jimmy Butler
+58           Kevin Love
+59           Kyle Lowry
+86        Klay Thompson
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67      Donovan Mitchell
+88    Karl-Anthony Towns
+22           Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      0.96      0.94        81
+           1       0.80      0.63      0.71        19
+
+    accuracy                           0.90       100
+   macro avg       0.86      0.80      0.82       100
+weighted avg       0.90      0.90      0.90       100
+
+# players with >0.15 diff. on hof prob. :  23
+                Player  model_hof prob  Hof prob
+80    Domantas Sabonis        0.348538    0.0669
+20       DeMar DeRozan        0.062592    0.4635
+72          Chris Paul        0.828702    1.0000
+67    Donovan Mitchell        0.632116    0.1285
+94           John Wall        0.029264    0.3239
+53       Kawhi Leonard        0.632985    0.9131
+81       Pascal Siakam        0.257670    0.0077
+74  Kristaps Porziņģis        0.214986    0.0004
+34      Draymond Green        0.239145    0.7682
+88  Karl-Anthony Towns        0.535222    0.2264
+30         Rudy Gobert        0.023681    0.2596
+95   Russell Westbrook        0.169721    0.9993
+22         Luka Dončić        0.851618    0.4120
+13        Jimmy Butler        0.276244    0.7298
+56         Brook Lopez        0.231911    0.0030
+58          Kevin Love        0.373133    0.7347
+59          Kyle Lowry        0.182307    0.8574
+48        Nikola Jokić        0.568814    0.9804
+86       Klay Thompson        0.047824    0.7021
+45        Kyrie Irving        0.507232    0.9345
+25         Joel Embiid        0.997659    0.6622
+91   Jonas Valančiūnas        0.246280    0.0003
+54      Damian Lillard        0.275444    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling) with sfm feature selection
+Optimal number of features: 5
+Selected features:
+['2P', 'AST', 'PTS', 'DRtg', 'On/OffRtg']
+Cross validation mean precision on training set:  0.6871861471861471
+Cross validation mean recall on training set:  0.4723809523809524
+Feature Columns (list) used for training and test process:
+['2P', 'AST', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 83
+Predicted positives: 17
+True negatives (how many of the predicts are really negative):  77
+False negatives (predicted negatives that are actual positive):  6
+True positives (how many of the predicts are really positive):  13
+False positives (predicted positives that are actual negative):  4
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 77, dtype: object
+Players really Hof that predicted not (False Negatives):
+34    Draymond Green
+58        Kevin Love
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67      Donovan Mitchell
+81         Pascal Siakam
+88    Karl-Anthony Towns
+22           Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.93      0.95      0.94        81
+           1       0.76      0.68      0.72        19
+
+    accuracy                           0.90       100
+   macro avg       0.85      0.82      0.83       100
+weighted avg       0.90      0.90      0.90       100
+
+# players with >0.15 diff. on hof prob. :  22
+                Player  model_hof prob  Hof prob
+20       DeMar DeRozan        0.093316    0.4635
+67    Donovan Mitchell        0.763453    0.1285
+94           John Wall        0.124832    0.3239
+81       Pascal Siakam        0.572654    0.0077
+18       Stephen Curry        0.677759    1.0000
+84        Jayson Tatum        0.378418    0.1770
+34      Draymond Green        0.048791    0.7682
+88  Karl-Anthony Towns        0.629331    0.2264
+30         Rudy Gobert        0.005614    0.2596
+22         Luka Dončić        0.838769    0.4120
+13        Jimmy Butler        0.901648    0.7298
+93      Nikola Vučević        0.313979    0.0092
+58          Kevin Love        0.434218    0.7347
+1          Bam Adebayo        0.362876    0.0076
+59          Kyle Lowry        0.009043    0.8574
+48        Nikola Jokić        0.597869    0.9804
+86       Klay Thompson        0.018634    0.7021
+12       Jalen Brunson        0.195097    0.0077
+45        Kyrie Irving        0.242191    0.9345
+25         Joel Embiid        0.976146    0.6622
+76       Julius Randle        0.192013    0.0102
+54      Damian Lillard        0.120191    0.9871
+
+
+#####################################################################################
+
+Training and test process (no scaling) with manual feature selection
+Cross validation mean precision on training set:  0.7064801864801865
+Cross validation mean recall on training set:  0.41714285714285715
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', 'PTS', 'AST', 'TRB', 'STL', 'BLK', 'ORtg', 'DRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 90
+Predicted positives: 10
+True negatives (how many of the predicts are really negative):  79
+False negatives (predicted negatives that are actual positive):  11
+True positives (how many of the predicts are really positive):  8
+False positives (predicted positives that are actual negative):  2
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 79, dtype: object
+Players really Hof that predicted not (False Negatives):
+24         Kevin Durant
+18        Stephen Curry
+34       Draymond Green
+95    Russell Westbrook
+58           Kevin Love
+36         James Harden
+59           Kyle Lowry
+48         Nikola Jokić
+86        Klay Thompson
+45         Kyrie Irving
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+29              Paul George
+53            Kawhi Leonard
+47             LeBron James
+13             Jimmy Butler
+19            Anthony Davis
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67    Donovan Mitchell
+23      Andre Drummond
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.88      0.98      0.92        81
+           1       0.80      0.42      0.55        19
+
+    accuracy                           0.87       100
+   macro avg       0.84      0.70      0.74       100
+weighted avg       0.86      0.87      0.85       100
+
+
+# players with >0.15 diff. on hof prob. :  24
+                Player  model_hof prob  Hof prob
+37    Montrezl Harrell        0.309163    0.0004
+20       DeMar DeRozan        0.039310    0.4635
+24        Kevin Durant        0.488835    1.0000
+67    Donovan Mitchell        0.586877    0.1285
+94           John Wall        0.096318    0.3239
+81       Pascal Siakam        0.279485    0.0077
+23      Andre Drummond        0.550750    0.0166
+18       Stephen Curry        0.291499    1.0000
+34      Draymond Green        0.061137    0.7682
+88  Karl-Anthony Towns        0.420292    0.2264
+30         Rudy Gobert        0.007598    0.2596
+95   Russell Westbrook        0.291420    0.9993
+22         Luka Dončić        0.199018    0.4120
+13        Jimmy Butler        0.926773    0.7298
+58          Kevin Love        0.088988    0.7347
+1          Bam Adebayo        0.201483    0.0076
+65     Khris Middleton        0.349435    0.0173
+36        James Harden        0.131988    0.9999
+59          Kyle Lowry        0.004246    0.8574
+48        Nikola Jokić        0.427187    0.9804
+86       Klay Thompson        0.019900    0.7021
+45        Kyrie Irving        0.095269    0.9345
+25         Joel Embiid        0.992054    0.6622
+54      Damian Lillard        0.038498    0.9871
+
+
+#####################################################################################
+XGBoost
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with no feature selection
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', 'ORtg', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 84
+Predicted positives: 16
+True negatives (how many of the predicts are really negative):  79
+False negatives (predicted negatives that are actual positive):  5
+True positives (how many of the predicts are really positive):  14
+False positives (predicted positives that are actual negative):  2
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 79, dtype: object
+Players really Hof that predicted not (False Negatives):
+34    Draymond Green
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+58               Kevin Love
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67    Donovan Mitchell
+84        Jayson Tatum
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.94      0.98      0.96        81
+           1       0.88      0.74      0.80        19
+
+    accuracy                           0.93       100
+   macro avg       0.91      0.86      0.88       100
+weighted avg       0.93      0.93      0.93       100
+
+
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with skb feature selection
+Optimal number of features: 10
+Selected features:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Feature Columns (list) used for training and test process:
+['FG', 'FGA', '2P', '2PA', 'FT', 'FTA', 'TOV', 'PTS', 'DRtg', 'On/OffRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 82
+Predicted positives: 18
+True negatives (how many of the predicts are really negative):  77
+False negatives (predicted negatives that are actual positive):  5
+True positives (how many of the predicts are really positive):  14
+False positives (predicted positives that are actual negative):  4
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 77, dtype: object
+Players really Hof that predicted not (False Negatives):
+34       Draymond Green
+95    Russell Westbrook
+59           Kyle Lowry
+86        Klay Thompson
+54       Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+13             Jimmy Butler
+58               Kevin Love
+36             James Harden
+19            Anthony Davis
+48             Nikola Jokić
+45             Kyrie Irving
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+67      Donovan Mitchell
+84          Jayson Tatum
+88    Karl-Anthony Towns
+22           Luka Dončić
+Name: Player, dtype: object
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.94      0.95      0.94        81
+           1       0.78      0.74      0.76        19
+
+    accuracy                           0.91       100
+   macro avg       0.86      0.84      0.85       100
+weighted avg       0.91      0.91      0.91       100
+
+
+#####################################################################################
+
+Training and test process (no scaling and no weighted classes) with manual feature selection
+Feature Columns (list) used for training and test process:
+['FGA', 'FG%', 'PTS', 'AST', 'TRB', 'STL', 'BLK', 'ORtg', 'DRtg']
+Actual negatives: 81
+Actual positives: 19
+Predicted negatives: 88
+Predicted positives: 12
+True negatives (how many of the predicts are really negative):  81
+False negatives (predicted negatives that are actual positive):  7
+True positives (how many of the predicts are really positive):  12
+False positives (predicted positives that are actual negative):  0
+PLayer not Hof (True Negatives):
+26      Derrick Favors
+80    Domantas Sabonis
+82        Marcus Smart
+68     Markieff Morris
+77        Derrick Rose
+            ...
+76       Julius Randle
+31        Aaron Gordon
+73     Otto Porter Jr.
+40         Buddy Hield
+83           Ish Smith
+Name: Player, Length: 81, dtype: object
+Players really Hof that predicted not (False Negatives):
+34    Draymond Green
+58        Kevin Love
+36      James Harden
+59        Kyle Lowry
+86     Klay Thompson
+45      Kyrie Irving
+54    Damian Lillard
+Name: Player, dtype: object
+Players true hof (True Positives):
+3     Giannis Antetokounmpo
+72               Chris Paul
+24             Kevin Durant
+29              Paul George
+53            Kawhi Leonard
+18            Stephen Curry
+47             LeBron James
+95        Russell Westbrook
+13             Jimmy Butler
+19            Anthony Davis
+48             Nikola Jokić
+25              Joel Embiid
+Name: Player, dtype: object
+PLayers not Hof that predicted so (False positives):
+Series([], Name: Player, dtype: object)
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.92      1.00      0.96        81
+           1       1.00      0.63      0.77        19
+
+    accuracy                           0.93       100
+   macro avg       0.96      0.82      0.87       100
+weighted avg       0.94      0.93      0.92       100
+
+
+#####################################################################################
+
+
+
+
